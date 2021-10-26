@@ -45,6 +45,7 @@
                         <div class="col-md-4">
                             <label>Teléfono</label>
                             <input type="text" class="form-control" id="txtTelefono" />
+                            <input type="hidden" id="hidCliente" value="-1" />
                         </div>
                     </div>
                 </div>
@@ -63,6 +64,96 @@
 
 
 <script>
+
+    $("#divListadoClientes").on("click", ".btnEditarCliente", function () {
+        let vIdCliente = $(this).attr("data-id");
+        $("#hidCliente").val(vIdCliente);
+        let modalRegistro = $("#modalRegistroCliente");
+
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Obtener","Customer")',
+            cache: false,
+            data: {
+                idCliente: vIdCliente
+            },
+            success: function (objCliente) {
+                $("#txtNombres").val(objCliente.firstName);
+                $("#txtApellidos").val(objCliente.lastName);
+                $("#txtCiudad").val(objCliente.city);
+                $("#txtPais").val(objCliente.country);
+                $("#txtTelefono").val(objCliente.phone);
+                modalRegistro.modal();
+            }
+        });
+    });
+
+    $("#divListadoClientes").on("click", ".btnEliminarCliente", function () {
+        let vIdCliente = $(this).attr("data-id");
+        if (confirm("¿Estás seguro de eliminar al cliente?")) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Eliminar","Customer")',
+                cache: false,
+                data: {
+                    idCliente: vIdCliente
+                },
+                success: function (exito) {
+                    if (exito) {
+                        alert("Se eliminó correctamente...");
+                        CargarListadoClientes();
+                    } else {
+                        alert("Ocurrió un inconveniente al eliminar el cliente");
+                    }
+
+                }
+
+            });
+
+
+
+        }
+
+
+
+
+
+
+    });
+
+    $("#btnGrabarCliente").click(function () {
+        let vNombres = $("#txtNombres").val();
+        let vApellidos = $("#txtApellidos").val();
+        let vCiudad = $("#txtCiudad").val();
+        let vPais = $("#txtPais").val();
+        let vTelefono = $("#txtTelefono").val();
+        let vIdCliente = $("#hidCliente").val();
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Grabar","Customer")',
+            cache: false,
+            data: {
+                idCliente: vIdCliente,
+                nombres: vNombres,
+                apellidos: vApellidos,
+                ciudad: vCiudad,
+                pais: vPais,
+                telefono: vTelefono
+            },
+            success: function (exito) {
+                if (exito) {
+                    alert("Se registró correctamente...");
+                    CargarListadoClientes();
+                    $("#modalRegistroCliente").modal("toggle");
+                }
+            }
+        });
+
+
+
+
+    });
 
     $("#btnAgregarCliente").click(function () {
         $("#modalRegistroCliente").modal();

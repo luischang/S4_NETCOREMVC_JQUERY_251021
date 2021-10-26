@@ -24,7 +24,7 @@ namespace S4_NETCOREMVC_JQUERY.Web.Repository
         public static async Task<IEnumerable<Customer>> GetCustomersAsync()
         {
             using var data = new SalesDBContext();
-            return await data.Customer.ToListAsync();
+            return await data.Customer.Include(x=>x.Order).ToListAsync();
         }
 
         public static async Task<Customer> GetCustomerById(int id)
