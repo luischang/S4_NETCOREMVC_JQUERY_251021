@@ -1,0 +1,31 @@
+﻿<div class="alert alert-primary">
+    <div class="row">
+        <div class="col-md-4">
+            <h4>Mantenimiento de Clientes</h4>
+        </div>
+        <div class="col-md-2">
+            <button id="btnAgregarCliente">
+                Agregar
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="divListadoClientes">
+
+</div>
+
+
+<script>
+    CargarListadoClientes();
+    function CargarListadoClientes() {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Listado","Customer")'
+
+        });
+
+    }
+
+
+</script>

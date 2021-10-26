@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using S4_NETCOREMVC_JQUERY.Web.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,15 @@ namespace S4_NETCOREMVC_JQUERY.Web.Controllers
         {
             return View();
         }
+
+        public async Task<IActionResult> Listado()
+        {
+            var customers = await CustomerRepo.GetCustomersAsync();
+            return View(customers);
+        }
+
+
+
+
     }
 }
