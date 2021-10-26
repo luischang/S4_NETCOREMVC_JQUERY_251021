@@ -17,7 +17,7 @@ namespace S4_NETCOREMVC_JQUERY.Web.Controllers
         public async Task<IActionResult> Listado()
         {
             var customers = await CustomerRepo.GetCustomersAsync();
-            return View(customers);
+            return PartialView(customers);
         }
 
 
