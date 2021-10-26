@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "S4_NETCOREMVC_JQUERY.Web", "S4_NETCOREMVC_JQUERY.Web\S4_NETCOREMVC_JQUERY.Web.csproj", "{22D43F08-659B-43D6-A4B4-0F27DED4D0FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22D43F08-659B-43D6-A4B4-0F27DED4D0FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22D43F08-659B-43D6-A4B4-0F27DED4D0FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22D43F08-659B-43D6-A4B4-0F27DED4D0FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22D43F08-659B-43D6-A4B4-0F27DED4D0FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9C2FF051-784E-4F0E-A3A5-47D5A8D50347}
+	EndGlobalSection
+EndGlobal
