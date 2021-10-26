@@ -90,8 +90,19 @@
 
     $("#divListadoClientes").on("click", ".btnEliminarCliente", function () {
         let vIdCliente = $(this).attr("data-id");
-        if (confirm("¿Estás seguro de eliminar al cliente?")) {
-            $.ajax({
+        /* if (confirm("¿Estás seguro de eliminar al cliente?")) {*/
+
+        swal({
+            title: "Are you sure?",
+            text: "Your will not be able to recover this imaginary file!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false
+        },
+            function () {
+                $.ajax({
                 type: "POST",
                 url: '@Url.Action("Eliminar","Customer")',
                 cache: false,
@@ -100,19 +111,22 @@
                 },
                 success: function (exito) {
                     if (exito) {
-                        alert("Se eliminó correctamente...");
+                        swal("Se eliminó correctamente...");
                         CargarListadoClientes();
                     } else {
-                        alert("Ocurrió un inconveniente al eliminar el cliente");
+                        swal("Ocurrió un inconveniente al eliminar el cliente");
                     }
 
                 }
 
             });
+                swal("Deleted!", "Your imaginary file has been deleted.", "success");
+            });
 
 
 
-        }
+
+        /*}*/
 
 
 
@@ -143,7 +157,7 @@
             },
             success: function (exito) {
                 if (exito) {
-                    alert("Se registró correctamente...");
+                    swal("Se registró correctamente...");
                     CargarListadoClientes();
                     $("#modalRegistroCliente").modal("toggle");
                 }

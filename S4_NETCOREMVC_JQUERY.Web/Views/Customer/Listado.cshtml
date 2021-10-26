@@ -2,35 +2,52 @@
 @model IEnumerable<Customer>
 
 
-    <table id="tbClientes" class="table table-striped">
-        <thead>
+<table id="tbClientes" class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Apellidos</th>
+            <th>Nombres</th>
+            <th>Ciudad</th>
+            <th>País</th>
+            <th>Teléfono</th>
+            <th>#Órdenes</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th>ID</th>
-                <th>Apellidos</th>
-                <th>Nombres</th>
-                <th>Ciudad</th>
-                <th>País</th>
-                <th>Teléfono</th>
-                <th>#Órdenes</th>
-                <th></th>
+                <td>@item.Id</td>
+                <td>@item.LastName</td>
+                <td>@item.FirstName</td>
+                <td>@item.City</td>
+                <td>@item.Country</td>
+                <td>@item.Phone</td>
+                <td>@item.Order.Count()</td>
+                <td>
+                    <button data-id="@item.Id" class="btn btn-warning btnEditarCliente">Editar</button>
+                    <button data-id="@item.Id" class="btn btn-danger btnEliminarCliente">Eliminar</button>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Id</td>
-                    <td>@item.LastName</td>
-                    <td>@item.FirstName</td>
-                    <td>@item.City</td>
-                    <td>@item.Country</td>
-                    <td>@item.Phone</td>
-                    <td>@item.Order.Count()</td>
-                    <td>
-                        <button data-id="@item.Id" class="btn btn-warning btnEditarCliente">Editar</button>
-                        <button data-id="@item.Id" class="btn btn-danger btnEliminarCliente">Eliminar</button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
+
+<script>
+    LoadTable();
+    function LoadTable() {
+        let table = $("#tbClientes").DataTable({
+            lengthChange: false,
+            buttons:['copy','excel','pdf','colvis','print']
+        });
+
+        table.buttons().container()
+            .insertBefore("#tbClientes_filter");
+    }
+
+
+
+
+</script>
